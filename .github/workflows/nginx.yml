@@ -18,8 +18,8 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04, debian-10.11, debian-11.3]
-        nginx-rel: [mainline, stable]
+        os: [ubuntu-20.04]
+        nginx-rel: [stable]
     steps:
       - name: checkout otel nginx
         uses: actions/checkout@v3
@@ -32,6 +32,9 @@ jobs:
           mix local.hex --force --if-missing
           mix local.rebar --force --if-missing
           mix deps.get
+          echo ${{ matrix.os }}
+          echo ${{ matrix.nginx-rel }}
+          echo "=========================wch=========================="
           mix dockerfiles .. ${{ matrix.os }}:${{ matrix.nginx-rel }}
       - name: setup buildx
         id: buildx
@@ -88,3 +91,4 @@ jobs:
         with:
           name: otel_ngx_module-${{ matrix.os }}-${{ matrix.nginx-rel }}.so
           path: /tmp/otel_ngx/otel_ngx_module.so
+
