@@ -20,6 +20,7 @@ struct OtelNgxAgentConfig {
 
   struct {
     std::string name = "unknown:nginx";
+    std::string namespace = "kube-system";
   } service;
 
   struct {
