@@ -52,7 +52,7 @@ static bool SetupOtlpExporter(toml_table_t* table, ngx_log_t* log, OtelNgxAgentC
     }
   }
 
-  return true;
+  return false;
 }
 
 static bool SetupExporter(toml_table_t* root, ngx_log_t* log, OtelNgxAgentConfig* config) {
